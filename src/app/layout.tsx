@@ -24,6 +24,7 @@ export const metadata: Metadata = {
     languages: { en: "/", "zh-CN": "/", "x-default": "/" },
   },
   openGraph: {
+    images: [{ url: "/opengraph-image.png", width: 1200, height: 630, alt: "Uncertainty OS · 不确定性操作系统" }],
     title: "Uncertainty OS — A system to model, navigate, and act under uncertainty",
     description: "Distributions over predictions. Scenarios over estimates. Decisions priced in tails.",
     url: "https://uncertainty-os.psyverse.fun/",
@@ -33,6 +34,7 @@ export const metadata: Metadata = {
     alternateLocale: ["zh_CN"],
   },
   twitter: {
+    images: ["/twitter-image.png"],
     card: "summary_large_image",
     title: "Uncertainty OS",
     description: "A system to model, navigate, and act under uncertainty.",
