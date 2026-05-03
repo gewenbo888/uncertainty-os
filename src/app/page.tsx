@@ -8,8 +8,9 @@ import { RiskMap } from "@/modules/RiskMap";
 import { DecisionUnderUncertainty } from "@/modules/DecisionUnderUncertainty";
 import { BlackSwanDetector } from "@/modules/BlackSwan";
 import { BranchingFutures } from "@/modules/BranchingFutures";
+import { RiskAnalyst } from "@/modules/RiskAnalyst";
 
-type Tab = "overview" | "engine" | "scenarios" | "risk" | "decision" | "blackswan" | "branching";
+type Tab = "overview" | "engine" | "scenarios" | "risk" | "decision" | "blackswan" | "branching" | "analyst";
 
 const TABS: { id: Tab; labelKey: keyof typeof ui }[] = [
   { id: "overview", labelKey: "nav_overview" },
@@ -19,6 +20,7 @@ const TABS: { id: Tab; labelKey: keyof typeof ui }[] = [
   { id: "decision", labelKey: "nav_decision" },
   { id: "blackswan", labelKey: "nav_blackswan" },
   { id: "branching", labelKey: "nav_branching" },
+  { id: "analyst",  labelKey: "nav_analyst" },
 ];
 
 export default function Home() {
@@ -68,6 +70,7 @@ export default function Home() {
         {tab === "decision" && <Section title={T("nav_decision")} sub={lang === "zh" ? "在期望值、风险惩罚与期权价值之间作出选择" : "Choose among decisions priced on expected value, risk penalty, and optionality"}><DecisionUnderUncertainty /></Section>}
         {tab === "blackswan" && <Section title={T("nav_blackswan")} sub={lang === "zh" ? "稀有高影响事件如何主导结果——正态世界的盲区" : "How rare high-impact events dominate outcomes — and why normal-world intuitions fail"}><BlackSwanDetector /></Section>}
         {tab === "branching" && <Section title={T("nav_branching")} sub={lang === "zh" ? "将未来建模为分支概率树，量化每条路径的期望贡献" : "Model the future as a branching probability tree — quantify the EV of every path"}><BranchingFutures /></Section>}
+        {tab === "analyst"  && <Section title={T("nav_analyst")}  sub={lang === "zh" ? "跨模块综合评估：识别结构性风险、尾部主导项与稳健决策路径" : "Cross-module synthesis: identify structural risks, tail-dominant findings, and robust decisions"}><RiskAnalyst /></Section>}
       </main>
 
       <footer className="border-t border-[var(--line)] py-6 text-center text-[11px] font-mono text-[var(--ink-dim)] tracking-[0.12em]">
@@ -132,6 +135,13 @@ const MODULE_CARDS = [
     title: { en: "Branching Futures", zh: "分支未来" },
     body: { en: "Build a decision tree with path probabilities. See which leaf dominates EV. Quantify the value of pruning tail branches.", zh: "构建含路径概率的决策树。识别主导期望值的叶节点。量化剪除尾部分支的价值。" },
     accent: "var(--upside)",
+  },
+  {
+    id: "analyst" as Tab,
+    icon: "⊛",
+    title: { en: "Risk Analyst", zh: "风险分析师" },
+    body: { en: "Synthesis layer across all modules. 2 critical risks, 2 warnings, 2 insights, 1 robust signal — with recommended actions.", zh: "跨模块综合层。2 项严重风险、2 项警告、2 项洞见、1 项稳健信号——附推荐行动。" },
+    accent: "var(--tail)",
   },
 ];
 
